@@ -14232,7 +14232,7 @@ Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </ul>
 <p><em>What are the strengths of the model; when does it perform well?</em></p>
 <ul>
-<li>Easy to use, run quickly and able to handle both categorical &amp; numerical data.</li>
+<li>Easy to use, run quickly,fast predictions and able to handle both categorical &amp; numerical data.</li>
 </ul>
 <p><em>What are the weaknesses of the model; when does it perform poorly?</em></p>
 <ul>
@@ -14240,7 +14240,7 @@ Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </ul>
 <p><em>What makes this model a good candidate for the problem, given what you know about the data?</em></p>
 <ul>
-<li>DecisionTreeClassifiers are proficient at binary classification so it is a good choice for this problem.</li>
+<li>DecisionTreeClassifiers are proficient at binary classification so it is a good choice for this problem.It can handle both numerical and continuous data for this project. Its fast predict time is also one advantage for this project with 45,000 data points. Decision Tree is able to perform feature selection that will help improve its performance even more as the feature size is 103. </li>
 </ul>
 <p><strong>AdaBoostClassifier</strong></p>
 <p><em>Describe one real-world application in industry where the model can be applied.</em></p>
@@ -14252,6 +14252,8 @@ Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 <p><em>What are the strengths of the model; when does it perform well?</em></p>
 <ul>
 <li>It is very difficult for the model to overfit.</li>
+<li>The algorithm is able find out important features.</li>
+<li>Few hyperparameters.</li>
 </ul>
 <p><em>What are the weaknesses of the model; when does it perform poorly?</em></p>
 <ul>
@@ -14259,7 +14261,7 @@ Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]
 </ul>
 <p><em>What makes this model a good candidate for the problem, given what you know about the data?</em></p>
 <ul>
-<li>AdaBoostClassifier should give good results for this problem as the task is to perform binary classification on the given data</li>
+<li>AdaBoostClassifier should give good results for this problem as the task is to perform binary classification on the given data. We have 103 features here that the learner is able to handle fast by it's nature to detect important features. The training time should not take long for our data set since it has to train multiply weak learners which by default is a one depth level decision tree.</li>
 </ul>
 <p><strong>LogisticRegression</strong></p>
 <p><em>Describe one real-world application in industry where the model can be applied.</em></p>
@@ -14511,8 +14513,8 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>From the graph we can infer that LogisticRegression and AdaBoostClassifier perform equally well on F score on the testing when 100% of the training data is used. On the other hand DecisionTreeClassifier seems to overfit as it has high accuracy and F score on training data but low accuracy and F score on testing data.</p>
-<p>I would like to recommend LogisticRegression to CharityML as it generalizes the data well and takes less time to train and predict than AdaBoostClassifier.</p>
+<p>From the graph we can infer that LogisticRegression and AdaBoostClassifier performed almost equally well on F score on the testing when 100% of the training data is used. On the other hand DecisionTreeClassifier seems to overfit as it has high accuracy and F score on training data but low accuracy and F score on testing data.</p>
+<p>I would like to <code>recommend AdaBoostClassifier</code> to CharityML as it outperforms other two models and it's test accuracy better than logistic regression and I can further tune it with grid search to get better scores. Here the  training and testing time difference is very minor so we can ignore that factor to consider AdaBoostClassifier.</p>
 
 </div>
 </div>
@@ -14533,10 +14535,19 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>Logistic regression is generally used where the dependent variable is binary. That means the dependent variable can take only two possible values such as “Yes or No”, “Default or No Default”, “Living or Dead”, “Yes or No” ,"Salary &gt;=50K or &lt;50K" etc. Independent factors or variables can be categorical or numerical variables.</p>
-<p>Logistic Regression measures the relationship between the dependent variable (our label, what we want to predict) and the one or more independent variables (our features), by estimating probabilities using it’s underlying logistic function.</p>
-<p>These probabilities must then be transformed into binary values in order to actually make a prediction. This is the task of the logistic function, also called the sigmoid function. The Sigmoid-Function is an S-shaped curve that can take any real-valued number and map it into a value between the range of 0 and 1, but never exactly at those limits. This values between 0 and 1 will then be transformed into either 0 ("Salary &lt;50K") or 1("Salary &gt;=50K") using a threshold classifier.</p>
-<p>References: <a href="https://machinelearning-blog.com/2018/04/23/logistic-regression-101/">https://machinelearning-blog.com/2018/04/23/logistic-regression-101/</a></p>
+<ul>
+<li><p>AdaBoost is a popular boosting technique which helps you combine multiple “weak classifiers” into a single “strong classifier”. A weak classifier is simply a classifier that performs poorly, but performs better than random guessing.</p>
+</li>
+<li><p>For instance, if you are trying to classify animals at a zoo, you might have an algorithm that can correctly identify zebras most of the time, but it simply guesses for any other animal. That algorithm would be a weak learner because it is better than guessing.</p>
+</li>
+<li><p>AdaBoost can be applied to any classification algorithm, so it’s really a technique that builds on top of other classifiers as opposed to being a classifier itself.</p>
+</li>
+<li><p>It helps you choose the training set for each new classifier that you train based on the results of the previous classifier.</p>
+</li>
+<li><p>It determines how much weight should be given to each classifier’s proposed answer when combining the results.</p>
+</li>
+</ul>
+<p>References: <a href="http://mccormickml.com/2013/12/13/adaboost-tutorial/">Adaboost</a></p>
 
 </div>
 </div>
@@ -14567,7 +14578,7 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import &#39;GridSearchCV&#39;, &#39;make_scorer&#39;, and any other necessary libraries</span>
@@ -14575,15 +14586,14 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">make_scorer</span>
 
 <span class="c1"># TODO: Initialize the classifier</span>
-<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">()</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># TODO: Create the parameters list you wish to tune, using a dictionary if needed.</span>
 <span class="c1"># HINT: parameters = {&#39;parameter_1&#39;: [value1, value2], &#39;parameter_2&#39;: [value1, value2]}</span>
-<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span>
-              <span class="s1">&#39;fit_intercept&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">],</span>
-              <span class="s1">&#39;solver&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;newton-cg&#39;</span><span class="p">,</span> <span class="s1">&#39;lbfgs&#39;</span><span class="p">,</span> <span class="s1">&#39;sag&#39;</span><span class="p">],</span>
-              <span class="s1">&#39;intercept_scaling&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">],</span>
-              <span class="s1">&#39;random_state&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">500</span><span class="p">]}</span>
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;n_estimators&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">150</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span>
+    <span class="s1">&#39;learning_rate&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mf">2.0</span><span class="p">]</span>
+<span class="p">}</span>
 
 <span class="c1"># TODO: Make an fbeta_score scoring object using make_scorer()</span>
 <span class="n">scorer</span> <span class="o">=</span>  <span class="n">make_scorer</span><span class="p">(</span><span class="n">fbeta_score</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
@@ -14624,60 +14634,14 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
-/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/linear_model/sag.py:326: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
-  &#34;the coef_ did not converge&#34;, ConvergenceWarning)
+<pre>/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no predicted samples.
+  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
+/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no predicted samples.
+  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
+/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no predicted samples.
+  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
+/Users/nareshkumar.v/anaconda3/lib/python3.7/site-packages/sklearn/metrics/classification.py:1135: UndefinedMetricWarning: F-score is ill-defined and being set to 0.0 due to no predicted samples.
+  &#39;precision&#39;, &#39;predicted&#39;, average, warn_for)
 </pre>
 </div>
 </div>
@@ -14690,13 +14654,13 @@ Look at the graph at the bottom left from the cell above(the visualization creat
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Unoptimized model
 ------
-Accuracy score on testing data: 0.8419
-F-score on testing data: 0.6832
+Accuracy score on testing data: 0.8576
+F-score on testing data: 0.7246
 
 Optimized Model
 ------
-Final accuracy score on the testing data: 0.8423
-Final F-score on the testing data: 0.6849
+Final accuracy score on the testing data: 0.8645
+Final F-score on the testing data: 0.7375
 </pre>
 </div>
 </div>
@@ -14731,13 +14695,13 @@ Final F-score on the testing data: 0.6849
 <tbody>
 <tr>
 <td style="text-align:center">Accuracy Score</td>
-<td style="text-align:center">0.8419</td>
-<td style="text-align:center">0.8423</td>
+<td style="text-align:center">0.8576</td>
+<td style="text-align:center">0.8645</td>
 </tr>
 <tr>
 <td style="text-align:center">F-score</td>
-<td style="text-align:center">0.6832</td>
-<td style="text-align:center">0.6849</td>
+<td style="text-align:center">0.7246</td>
+<td style="text-align:center">0.7375</td>
 </tr>
 </tbody>
 </table>
@@ -14804,7 +14768,7 @@ I think that the following features are most important for salary prediction:</p
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import a supervised learning model that has &#39;feature_importances_&#39;</span>
@@ -14911,7 +14875,7 @@ The above features are relevant to the problem as it is true that capital-loss a
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import functionality for cloning a model</span>
@@ -14952,13 +14916,13 @@ The above features are relevant to the problem as it is true that capital-loss a
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Final Model trained on full data
 ------
-Accuracy on testing data: 0.8423
-F-score on testing data: 0.6849
+Accuracy on testing data: 0.8663
+F-score on testing data: 0.7425
 
 Final Model trained on reduced data
 ------
-Accuracy on testing data: 0.8052
-F-score on testing data: 0.5872
+Accuracy on testing data: 0.8404
+F-score on testing data: 0.6973
 </pre>
 </div>
 </div>
@@ -14982,7 +14946,7 @@ F-score on testing data: 0.5872
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
-<p>As we can see that,accuracy and F-score has decreased much on reduced data so I won't go for reduced data as my training set, as training time was not a factor in Logistic Regression. Although it is good to identify important features and train the model using them if training time on the whole set is very high.</p>
+<p>As we can see that,accuracy and F-score has decreased on reduced data so I won't go for reduced data as my training set, as training time is not a concern here for this dataset. Although it is good to identify important features and train the model using them if training time on the whole set is very high.</p>
 
 </div>
 </div>
